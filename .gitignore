@@ -1,3 +1,5 @@
 /build
 /android_build
 .vs
+.xmake
+compile_commands.json
