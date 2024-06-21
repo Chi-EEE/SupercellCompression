@@ -87,7 +87,7 @@ namespace sc
 			Lzma(Props& props);
 			~Lzma();
 
-			virtual void compress_stream(Stream& input, Stream& output);
+			void compress_stream(Stream& input, Stream& output);
 
 		private:
 			CLzmaEncHandle m_context;

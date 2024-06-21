@@ -48,9 +48,9 @@ namespace sc
 
 		public:
 			Lzham(Props& props);
-			virtual ~Lzham();
+			~Lzham();
 
-			virtual void compress_stream(Stream& input, Stream& output);
+			void compress_stream(Stream& input, Stream& output);
 
 		private:
 			lzham_compress_state_ptr m_state;

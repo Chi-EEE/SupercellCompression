@@ -12,7 +12,7 @@ namespace sc
 			Zstd();
 			~Zstd();
 
-			virtual void decompress_stream(Stream& input, Stream& output);
+			void decompress_stream(Stream& input, Stream& output);
 
 		private:
 			ZSTD_DStream* m_context;

@@ -92,25 +92,25 @@ namespace sc
 		~KhronosTexture();
 
 	public:
-		virtual BasePixelType base_type() const;
+		BasePixelType base_type() const;
 
-		virtual ColorSpace colorspace() const;
+		ColorSpace colorspace() const;
 
-		virtual PixelDepth depth() const;
+		PixelDepth depth() const;
 
-		virtual size_t data_length() const;
+		size_t data_length() const;
 
 		size_t data_length(uint32_t level_index) const;
 
-		virtual uint8_t* data() const;
+		uint8_t* data() const;
 
 		const BufferStream* data(uint32_t level_index) const;
 
-		virtual bool is_compressed() const;
+		bool is_compressed() const;
 
 		KhronosTextureCompression compression_type();
 
-		virtual size_t decompressed_data_length();
+		size_t decompressed_data_length();
 
 		uint32_t level_count() const;
 
@@ -129,9 +129,9 @@ namespace sc
 		static KhronosTextureCompression format_compression_type(glInternalFormat format);
 
 	public:
-		virtual void write(Stream& buffer);
+		void write(Stream& buffer);
 
-		virtual void decompress_data(Stream& output);
+		void decompress_data(Stream& output);
 		void decompress_data(Stream& output, uint32_t level_index);
 
 		void set_level_data(Stream& data, Image::PixelDepth data_format, uint32_t level_index);

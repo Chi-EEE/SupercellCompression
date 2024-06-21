@@ -34,9 +34,9 @@ namespace sc
 			};
 		public:
 			Lzham(Props& props);
-			virtual ~Lzham();
+			~Lzham();
 
-			virtual void decompress_stream(Stream& input, Stream& output);
+			void decompress_stream(Stream& input, Stream& output);
 
 		private:
 			lzham_decompress_state_ptr m_state = nullptr;
