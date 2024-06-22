@@ -17,7 +17,7 @@ namespace sc
 	{
 		struct LzmaDecompressContext : public CLzmaDec {};
 
-		const void* LzmaAlloc[] = { (void*)&sc::lzma::lzma_alloc, (void*)&sc::lzma::lzma_free };
+		static inline const void* LzmaAlloc[] = { (void*)&sc::lzma::lzma_alloc, (void*)&sc::lzma::lzma_free };
 
 		class Lzma : public DecompressionInterface
 		{
