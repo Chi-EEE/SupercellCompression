@@ -9,11 +9,22 @@ add_requires("astc-encoder", {configs = {sse41 = true, native = true, cli = fals
 add_requires("supercell_core")
 
 target("supercell_compression")
-    set_kind("$(kind)")
+    set_kind("headeronly")
 
     add_packages("lzham_codec", "lzma", "zstd", "astc-encoder")
     add_packages("supercell_core")
 
-    add_files("source/**.cpp")
     add_headerfiles("include/(**.h)")
-    add_includedirs("include")
+    add_includedirs("include", {public = true})
+
+target("supercell_compression_cli")
+    set_default(false)
+    set_kind("binary")
+
+    add_packages("lzham_codec", "lzma", "zstd", "astc-encoder")
+    add_packages("supercell_core")
+
+    add_headerfiles("cli/**.h")
+    add_files("cli/**.cpp")
+    
+    add_deps("supercell_compression")

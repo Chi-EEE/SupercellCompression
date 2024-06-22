@@ -1,6 +1,9 @@
 #pragma once
 
 #include <stdint.h>
+
+#include <astcenc.h>
+
 #include "generic/image/image.h"
 
 #pragma region Forward Declaration
@@ -39,7 +42,24 @@ namespace sc
 		};
 #pragma endregion
 
-		astcenc_swizzle get_swizzle(Image::BasePixelType type);
+		astcenc_swizzle get_swizzle(Image::BasePixelType type)
+		{
+			switch (type)
+			{
+			case sc::Image::BasePixelType::RGB:
+				return { ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_0 };
+
+			case sc::Image::BasePixelType::LA:
+				return { ASTCENC_SWZ_R, ASTCENC_SWZ_A, ASTCENC_SWZ_0, ASTCENC_SWZ_0 };
+
+			case sc::Image::BasePixelType::L:
+				return { ASTCENC_SWZ_R, ASTCENC_SWZ_0, ASTCENC_SWZ_0, ASTCENC_SWZ_0 };
+
+			case sc::Image::BasePixelType::RGBA:
+			default:
+				return { ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_A };
+			}
+		}
 
 		const uint8_t FileIdentifier[4] = {
 			0x13, 0xAB, 0xA1, 0x5C

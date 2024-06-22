@@ -1,29 +1,26 @@
-#include "main.h"
-#include "SupercellCompression.h"
+#pragma once
 
-using namespace sc::Compressor;
+#include "SupercellCompression.h"
 
 void LZHAM_compress(sc::Stream& input, sc::Stream& output, CommandLineOptions& options)
 {
-	Lzham::Props props;
+	sc::Compressor::Lzham::Props props;
 	props.dict_size_log2 = 18;
 
 	switch (options.binary.container)
 	{
 	case FileContainer::SC:
 	{
-		using namespace sc::ScCompression;
-
-		Compressor::CompressorContext context;
-		context.signature = Signature::Lzham;
+		sc::ScCompression::Compressor::CompressorContext context;
+		context.signature = sc::ScCompression::Signature::Lzham;
 		context.threads_count = options.threads;
 
-		Compressor::compress(input, output, context);
+		sc::ScCompression::Compressor::compress(input, output, context);
 	}
 	break;
 
 	case FileContainer::None:
-		Lzham::write(input, output, props);
+		sc::Compressor::Lzham::write(input, output, props);
 		break;
 
 	default:
@@ -38,19 +35,17 @@ void LZMA_compress(sc::Stream& input, sc::Stream& output, CommandLineOptions& op
 	{
 	case FileContainer::SC:
 	{
-		using namespace sc::ScCompression;
-
-		Compressor::CompressorContext context;
-		context.signature = Signature::Lzma;
+		sc::ScCompression::Compressor::CompressorContext context;
+		context.signature = sc::ScCompression::Signature::Lzma;
 		context.threads_count = options.threads;
 
-		Compressor::compress(input, output, context);
+		sc::ScCompression::Compressor::compress(input, output, context);
 	}
 	break;
 
 	case FileContainer::None:
 	{
-		Lzma::Props props;
+		sc::Compressor::Lzma::Props props;
 		props.level = 6;
 		props.pb = 2;
 		props.lc = 3;
@@ -58,7 +53,7 @@ void LZMA_compress(sc::Stream& input, sc::Stream& output, CommandLineOptions& op
 		props.use_long_unpacked_length = options.binary.lzma.use_long_unpacked_length;
 		props.threads = options.threads;
 
-		Lzma context(props);
+		sc::Compressor::Lzma context(props);
 		context.compress_stream(input, output);
 	}
 	break;
@@ -74,19 +69,17 @@ void ZSTD_compress(sc::Stream& input, sc::Stream& output, CommandLineOptions& op
 	{
 	case FileContainer::SC:
 	{
-		using namespace sc::ScCompression;
-
-		Compressor::CompressorContext context;
-		context.signature = Signature::Zstandard;
+		sc::ScCompression::Compressor::CompressorContext context;
+		context.signature = sc::ScCompression::Signature::Zstandard;
 		context.threads_count = options.threads;
 
-		Compressor::compress(input, output, context);
+		sc::ScCompression::Compressor::compress(input, output, context);
 	}
 	break;
 
 	case FileContainer::None:
 	{
-		Zstd::Props props;
+		sc::Compressor::Zstd::Props props;
 		// TODO: more params
 
 		sc::Compressor::Zstd context(props);

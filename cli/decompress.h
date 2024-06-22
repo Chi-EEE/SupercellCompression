@@ -1,7 +1,6 @@
-#include "main.h"
-#include "SupercellCompression.h"
+#pragma once
 
-using namespace sc::Decompressor;
+#include "SupercellCompression.h"
 
 void LZMA_decompress(sc::Stream& input, sc::Stream& output, CommandLineOptions& options)
 {
@@ -30,7 +29,7 @@ void LZHAM_decompress(sc::Stream& input, sc::Stream& output, CommandLineOptions&
 		std::cout << "[Error] LZHAM file has bad magic";
 	}
 
-	Lzham::Props props;
+	sc::Decompressor::Lzham::Props props;
 	props.dict_size_log2 = input.read_unsigned_int();
 	props.unpacked_length = input.read_unsigned_long();
 
@@ -48,11 +47,11 @@ void ASTC_decompress(sc::Stream& input, sc::Stream& output, CommandLineOptions&)
 {
 	uint16_t width;
 	uint16_t height;
-	Astc::Props props;
+	sc::Decompressor::Astc::Props props;
 
-	Astc::read_header(input, width, height, props.blocks_x, props.blocks_y);
+	sc::Decompressor::Astc::read_header(input, width, height, props.blocks_x, props.blocks_y);
 
-	Astc context(props);
+	sc::Decompressor::Astc context(props);
 	context.decompress_image(width, height, sc::Image::BasePixelType::RGBA, input, output);
 }
 
@@ -63,7 +62,7 @@ void SC_decompress(sc::Stream& input, sc::Stream& output, CommandLineOptions& op
 	if (options.binary.sc.print_metadata)
 	{
 		MetadataAssetArray array;
-		Decompressor::decompress(input, output, &array);
+		sc::ScCompression::Decompressor::decompress(input, output, &array);
 
 		if (array.size())
 		{
@@ -83,7 +82,7 @@ void SC_decompress(sc::Stream& input, sc::Stream& output, CommandLineOptions& op
 	}
 	else
 	{
-		Decompressor::decompress(input, output, nullptr);
+		sc::ScCompression::Decompressor::decompress(input, output, nullptr);
 	}
 }
 

@@ -19,8 +19,12 @@ namespace sc
 
 #pragma endregion
 
-		void* lzma_alloc(void*, size_t size);
-		void lzma_free(void*, void* address);
+		void* lzma_alloc(void*, size_t size) {
+			return memalloc(size);
+		}
+		void lzma_free(void*, void* address) {
+			free(address);
+		}
 
 #pragma region Enums
 

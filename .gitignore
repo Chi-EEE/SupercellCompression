@@ -3,3 +3,4 @@
 .vs
 .xmake
 compile_commands.json
+vsxmake*

@@ -1,10 +1,14 @@
-#include "main.h"
+#pragma once
+
 #include "stb/stb.h"
 
 #include <vector>
+
 using std::vector;
 
 using namespace sc;
+
+#define print(text) std::cout << text << std::endl
 
 #pragma region ASTC
 #include "SupercellCompression/Astc.h"

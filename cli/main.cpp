@@ -1,9 +1,31 @@
-#include "main.h"
+#include <SupercellCompression.h>
+
+#include "io/stream.h"
+#include "io/file_stream.h"
 
 #include "io/buffer_stream.h"
 #include "io/file_stream.h"
 #include "exception/GeneralRuntimeException.h"
 #include "stb/stb.h"
+
+#include "options.h"
+#include "compress.h"
+#include "decompress.h"
+#include "image_convert.h"
+
+using namespace std::chrono;
+
+#define print(text) std::cout << text << std::endl
+
+#if defined _WIN32
+#define PLATFORM "Windows"
+#elif defined __linux
+#define PLATFORM "Linux"
+#elif defined __macosx
+#define PLATFORM "MacOSX"
+#else
+#define PLATFORM "Unknown"
+#endif
 
 void print_usage()
 {
@@ -176,7 +198,7 @@ int main(int argc, char* argv[])
 		}
 
 		std::cout << operation_describe << " operation took: ";
-		print_time(start_time);
+		print_time(start_time, steady_clock::now());
 	}
 	catch (sc::GeneralRuntimeException& exception)
 	{
