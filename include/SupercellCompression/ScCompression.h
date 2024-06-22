@@ -4,6 +4,10 @@
 #include <string>
 #include <thread>
 
+#include "Zstd/Decompressor.h"
+#include "Lzma/Decompressor.h"
+#include "Lzham/Decompressor.h"
+
 #include "io/stream.h"
 
 #include "generic/md5.h"
@@ -247,8 +251,6 @@ namespace sc {
 
 			void decompress(Stream& input, Stream& output, MetadataAssetArray* metadataArray = nullptr)
 			{
-				using namespace sc::Decompressor;
-
 				int16_t magic = input.read_unsigned_short(Endian::Big);
 				if (magic != SC_MAGIC)
 				{
@@ -288,7 +290,7 @@ namespace sc {
 				if (version == 3)
 				{
 					MemoryStream compressed_data(compressed_data_ptr, compressed_data_length);
-					Zstd context;
+					sc::Decompressor::Zstd context;
 					context.decompress_stream(compressed_data, output);
 				}
 				else if (version == 1)
@@ -297,7 +299,7 @@ namespace sc {
 					if (*(uint32_t*)compressed_data_ptr == 0x5A4C4353)
 					{
 						MemoryStream compressed_data(compressed_data_ptr + 4, compressed_data_length - 4);
-						Lzham::Props props;
+						sc::Decompressor::Lzham::Props props;
 						props.dict_size_log2 = compressed_data.read_unsigned_byte();
 						props.unpacked_length = compressed_data.read_unsigned_int();
 						sc::Decompressor::Lzham context(props);
@@ -312,7 +314,7 @@ namespace sc {
 
 						uint32_t unpacked_length = compressed_data.read_unsigned_int();
 
-						Lzma context(header, unpacked_length);
+						sc::Decompressor::Lzma context(header, unpacked_length);
 						context.decompress_stream(compressed_data, output);
 					}
 				}
