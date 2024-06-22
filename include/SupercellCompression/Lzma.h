@@ -19,10 +19,10 @@ namespace sc
 
 #pragma endregion
 
-		void* lzma_alloc(void*, size_t size) {
+		inline void* lzma_alloc(void*, size_t size) {
 			return memalloc(size);
 		}
-		void lzma_free(void*, void* address) {
+		inline void lzma_free(void*, void* address) {
 			free(address);
 		}
 

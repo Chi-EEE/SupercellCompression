@@ -39,7 +39,7 @@ namespace sc {
 
 		namespace Decompressor
 		{
-			void read_metadata(uint8_t* buffer_end, MetadataAssetArray& metadataArray)
+			inline void read_metadata(uint8_t* buffer_end, MetadataAssetArray& metadataArray)
 			{
 				uint32_t asset_total_count = 0;
 				bool unknown_bool = false;
@@ -249,7 +249,7 @@ namespace sc {
 				}
 			}
 
-			void decompress(Stream& input, Stream& output, MetadataAssetArray* metadataArray = nullptr)
+			inline void decompress(Stream& input, Stream& output, MetadataAssetArray* metadataArray = nullptr)
 			{
 				int16_t magic = input.read_unsigned_short(Endian::Big);
 				if (magic != SC_MAGIC)
@@ -336,7 +336,7 @@ namespace sc {
 				uint32_t threads_count = std::thread::hardware_concurrency() <= 0 ? 1 : std::thread::hardware_concurrency();
 			};
 
-			void write_metadata(Stream& input)
+			inline void write_metadata(Stream& input)
 			{
 				// TODO !!!!!!!!!!!!!!!!!!!!!!
 				input.write(metadata_delim, sizeof(metadata_delim));
@@ -353,7 +353,7 @@ namespace sc {
 				input.write_unsigned_int(static_cast<uint32_t>(metadata.length()), Endian::Big);
 			}
 
-			void compress(Stream& input, Stream& output, CompressorContext& context)
+			inline void compress(Stream& input, Stream& output, CompressorContext& context)
 			{
 				using namespace sc::Compressor;
 
