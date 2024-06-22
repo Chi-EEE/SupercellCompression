@@ -33,7 +33,7 @@ namespace sc
 			FORCE_DWORD = 0xFFFFFFFF
 		};
 
-		const uint8_t FileIdentifier[4] =
+		const inline uint8_t FileIdentifier[4] =
 		{
 			'0', 'H', 'Z', 'L'
 		};
