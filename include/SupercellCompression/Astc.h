@@ -42,7 +42,7 @@ namespace sc
 		};
 #pragma endregion
 
-		astcenc_swizzle get_swizzle(Image::BasePixelType type)
+		inline astcenc_swizzle get_swizzle(Image::BasePixelType type)
 		{
 			switch (type)
 			{
@@ -61,7 +61,7 @@ namespace sc
 			}
 		}
 
-		const uint8_t FileIdentifier[4] = {
+		static const uint8_t FileIdentifier[4] = {
 			0x13, 0xAB, 0xA1, 0x5C
 		};
 	}
