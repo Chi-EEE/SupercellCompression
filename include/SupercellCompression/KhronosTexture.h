@@ -29,7 +29,9 @@ namespace sc
 	class KhronosTexture : public CompressedImage
 	{
 	public:
-		static const uint8_t FileIdentifier[12];
+		static inline const uint8_t FileIdentifier[12] = {
+			0xAB, 'K', 'T', 'X', ' ', '1', '1', 0xBB, '\r', '\n', 0x1A, '\n'
+		};
 
 		enum class glInternalFormat : uint32_t {
 			GL_RGBA8 = 0x8058,
@@ -657,9 +659,5 @@ namespace sc
 		glInternalFormat m_internal_format;
 
 		std::vector<BufferStream*> m_levels;
-	};
-
-	const uint8_t KhronosTexture::FileIdentifier[12] = {
-		0xAB, 'K', 'T', 'X', ' ', '1', '1', 0xBB, '\r', '\n', 0x1A, '\n'
 	};
 }
