@@ -44,7 +44,7 @@ namespace sc
 {
 	namespace Compressor
 	{
-		static inline const void* LzmaAlloc[] = { (void*)&sc::lzma::lzma_alloc, (void*)&sc::lzma::lzma_free };
+		inline const void* LzmaAlloc[] = { (void*)&sc::lzma::lzma_alloc, (void*)&sc::lzma::lzma_free };
 
 		class Lzma : public CompressionInterface
 		{

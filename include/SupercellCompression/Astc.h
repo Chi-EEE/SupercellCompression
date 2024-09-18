@@ -61,7 +61,7 @@ namespace sc
 			}
 		}
 
-		static inline const uint8_t FileIdentifier[4] = {
+		inline const uint8_t FileIdentifier[4] = {
 			0x13, 0xAB, 0xA1, 0x5C
 		};
 	}

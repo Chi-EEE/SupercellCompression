@@ -29,7 +29,7 @@ namespace sc
 	class KhronosTexture : public CompressedImage
 	{
 	public:
-		static inline const uint8_t FileIdentifier[12] = {
+		inline const uint8_t FileIdentifier[12] = {
 			0xAB, 'K', 'T', 'X', ' ', '1', '1', 0xBB, '\r', '\n', 0x1A, '\n'
 		};
 

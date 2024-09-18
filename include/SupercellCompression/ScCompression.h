@@ -324,7 +324,7 @@ namespace sc {
 		namespace Compressor
 		{
 			static constexpr int HASH_LENGTH = 16;
-			static inline const char* metadata_delim = "START";
+			inline const char* metadata_delim = "START";
 
 			struct CompressorContext
 			{
