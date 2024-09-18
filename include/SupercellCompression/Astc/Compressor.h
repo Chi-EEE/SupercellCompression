@@ -32,14 +32,14 @@ namespace sc
 
 		public:
 			Astc(Props& props);
-			virtual ~Astc();
+			~Astc();
 
 			/// <summary>
 			/// Compress image data with ASTC codec
 			/// </summary>
 			/// <param name="image"></param>
 			/// <param name="output"></param>
-			virtual void compress_image(uint16_t widht, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output);
+			void compress_image(uint16_t width, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output) override;
 
 		private:
 			astcenc_context* m_context;

@@ -129,9 +129,9 @@ namespace sc
 		static KhronosTextureCompression format_compression_type(glInternalFormat format);
 
 	public:
-		virtual void write(Stream& buffer);
+		void write(Stream& buffer) override;
 
-		virtual void decompress_data(Stream& output);
+		void decompress_data(Stream& output) override;
 		void decompress_data(Stream& output, uint32_t level_index);
 
 		void set_level_data(Stream& data, Image::PixelDepth data_format, uint32_t level_index);

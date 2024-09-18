@@ -15,7 +15,7 @@ namespace sc
 			Lzma(uint8_t header[lzma::PROPS_SIZE], const uint64_t unpacked_size);
 			~Lzma();
 
-			virtual void decompress_stream(Stream& input, Stream& output) override;
+			void decompress_stream(Stream& input, Stream& output) override;
 
 		private:
 			LzmaDecompressContext* m_context;

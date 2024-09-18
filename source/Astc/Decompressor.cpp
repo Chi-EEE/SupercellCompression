@@ -65,15 +65,15 @@ namespace sc
 			}
 		}
 
-		void Astc::decompress_image(uint16_t widht, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output)
+		void Astc::decompress_image(uint16_t width, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output)
 		{
 			astcenc_swizzle swizzle = astc::get_swizzle(type);
 
-			size_t data_size = (widht * height) * (uint8_t)type;
+			size_t data_size = (width * height) * (uint8_t)type;
 			uint8_t* data = memalloc(data_size);
 
 			astcenc_image decoder_image;
-			decoder_image.dim_x = widht;
+			decoder_image.dim_x = width;
 			decoder_image.dim_y = height;
 			decoder_image.dim_z = 1;
 			decoder_image.data = reinterpret_cast<void**>(&data);

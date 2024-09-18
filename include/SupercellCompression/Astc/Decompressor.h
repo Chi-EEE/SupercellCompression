@@ -28,10 +28,10 @@ namespace sc
 		public:
 			Astc(Props& props);
 
-			virtual ~Astc();
+			~Astc();
 
 		public:
-			virtual void decompress_image(uint16_t width, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output);
+			void decompress_image(uint16_t width, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output);
 
 		private:
 			astcenc_context* m_context;

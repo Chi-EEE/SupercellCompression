@@ -69,14 +69,14 @@ namespace sc
 			delete m_config;
 		}
 
-		void Astc::compress_image(uint16_t widht, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output)
+		void Astc::compress_image(uint16_t width, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output)
 		{
 			astcenc_swizzle swizzle = get_swizzle(type);
 
 			uint8_t* image_buffer = (uint8_t*)input.data() + input.position();
 
 			astcenc_image encoder_image{};
-			encoder_image.dim_x = widht;
+			encoder_image.dim_x = width;
 			encoder_image.dim_y = height;
 			encoder_image.dim_z = 1;
 			encoder_image.data = (void**)&image_buffer;

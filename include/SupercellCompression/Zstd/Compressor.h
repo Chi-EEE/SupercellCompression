@@ -170,7 +170,7 @@ namespace sc
 			Zstd(Props& props);
 			~Zstd();
 
-			virtual void compress_stream(Stream& input, Stream& output);
+			void compress_stream(Stream& input, Stream& output) override;
 
 		private:
 			ZSTD_CCtx* m_context = nullptr;

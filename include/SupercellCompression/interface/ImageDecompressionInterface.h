@@ -12,6 +12,6 @@ namespace sc
 		virtual ~ImageDecompressionInterface() = default;
 
 	public:
-		virtual void decompress_image(uint16_t widht, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output) = 0;
+		virtual void decompress_image(uint16_t width, uint16_t height, Image::BasePixelType type, Stream& input, Stream& output) = 0;
 	};
 }
