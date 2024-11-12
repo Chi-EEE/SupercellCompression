@@ -21,3 +21,5 @@ add_subdirectory(supercell-compression)
 if(SC_COMPRESSION_BUILD_CLI)
     add_subdirectory(cli-tool)
 endif()
+
+add_subdirectory(test)
